@@ -1,5 +1,6 @@
 from db.run_sql import run_sql
 from models.artist import Artist
+from models.album import Album
 
 def save(artist):
     sql = f"INSERT INTO artists (first_name, last_name) VALUES (%s, %s) RETURNING *"
@@ -35,3 +36,8 @@ def albums(artist):
     albums = []
     sql = "SELECT * FROM albums WHERE artist_id=%s"
     values = [artist.id]
+    results = run_sql(sql, values)
+    for row in results:
+        album = Album(row["name"], row["genre"], artist, row["id"])
+        albums.append(album)
+    return albums

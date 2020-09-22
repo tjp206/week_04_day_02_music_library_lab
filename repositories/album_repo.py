@@ -1,5 +1,6 @@
 from db.run_sql import run_sql
 from models.album import Album
+from models.artist import Artist
 import repositories.artist_repo as artist_repo
 
 def save(album):
@@ -29,6 +30,17 @@ def select(id):
         artist = artist_repo.select(result['artist_id'])
         album = Album(result["name"], result["genre"], artist, result["id"])
     return album
+
+def artist(id):
+    artist = None
+    album = select(id)
+    sql = "SELECT * FROM artists WHERE id = %s"
+    values = [albums.artist.id]
+    result = run_sql(sql, values)[0]
+    if result is not None:
+        artist = Artist(result["first_name"], result["last_name"], result["id"])
+    return artist
+
 
 
 
