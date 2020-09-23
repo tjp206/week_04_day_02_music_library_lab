@@ -28,6 +28,4 @@ album_3 = Album ('In the Zone', 'Pop', artist_3)
 print(album_3.__dict__)
 album_repo.save(album_3)
 
-
-
-# pdb.set_trace()
+pdb.set_trace()

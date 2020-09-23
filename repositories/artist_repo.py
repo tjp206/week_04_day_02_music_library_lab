@@ -41,3 +41,7 @@ def albums(artist):
         album = Album(row["name"], row["genre"], artist, row["id"])
         albums.append(album)
     return albums
+
+def delete_all():
+    sql = "DELETE FROM artists"
+    run_sql(sql)

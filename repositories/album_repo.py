@@ -35,12 +35,15 @@ def artist(id):
     artist = None
     album = select(id)
     sql = "SELECT * FROM artists WHERE id = %s"
-    values = [albums.artist.id]
+    values = [album.artist.id]
     result = run_sql(sql, values)[0]
     if result is not None:
         artist = Artist(result["first_name"], result["last_name"], result["id"])
     return artist
 
+def delete_all():
+    sql = "DELETE FROM albums"
+    run_sql(sql)
 
 
 
